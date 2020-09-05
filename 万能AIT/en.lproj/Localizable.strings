@@ -1,0 +1,107 @@
+/*
+ Localizable.strings
+ 万能AIT
+ 
+ Created by Mac on 17/3/21.
+ Copyright © 2017年 APK. All rights reserved.
+ */
+"摄像机" = "Camera";
+"本地" = "Local";
+"DVR" = "DVR";
+"删除%d个文件？" = "Delete %d files？";
+"%d个文件删除失败！" = "%d failures";
+"取消" = "Cancel";
+"确定" = "OK";
+"相册" = "Album";
+"设置" = "Settings";
+"wifi设置" = "Wi-Fi Setting";
+"校准时间" = "Set/Adjust Time";
+"格式化TF卡" = "Format SD Card";
+"录音设置" = "Microphone ON/OFF";
+"录制时长" = "Video Length";
+"碰撞灵敏度" = "G-Sensor";
+"恢复出厂设置" = "Reset";
+
+"曝光调整" = "Exposure";
+"自动关屏" = "Power Saver";
+"戳记" = "Date Stamp";
+"日期格式" = "Date Format" ;
+"移动侦测" = "Motion Detection ON/OFF";
+"15秒" = "15sec";
+"日期+型号" = "Date & Logo";
+"日期" = "Date";
+"无" = "OFF";
+"年月日" = "YYYY/MM/DD";
+"月日年" = "MM/DD/YYYY";
+"日月年" = "DD/MM/YYYY";
+
+"30秒" = "30 Secs";
+"1分钟" = "1 Min";
+"3分钟" = "3 Mins";
+"5分钟" = "5 Mins";
+"关闭" = "Off";
+"低" = "Low";
+"中" = "Mid";
+"高" = "High";
+"共有%d个文件" = "%d files";
+"未连接DVR" = "DVR is not connected!格式化SD卡";
+"照片" = "Photo";
+"视频" = "Video";
+"事件" = "Event";
+"选择" = "Select";
+"全选" = "All";
+"未选择文件" = "No file selected";
+"Wi-Fi名称必须为1-27个非空字符。" = "Wi-Fi name must be 1-27 non empty characters.";
+"Wi-Fi密码必须为8-32个非空字符。" = "Wi-Fi password must be 8-32 non empty characters";
+"更新" = "Update";
+"修改成功！" = "Modify success!";
+"修改失败！" = "Modify failure!";
+"摄像机时间将会校准为：" = "Camera time will be set to:";
+"校准时间失败！" = "Set camera time failure!";
+"校准时间成功！" = "The time on the recorder is synchronized!";
+"格式化TF卡失败！" = "Format TF Card failure!";
+"格式化TF卡成功！" = "Format TF Card success!";
+"恢复出厂设置失败！" = "Factory reset failure!";
+"恢复出厂设置成功！" = "Factory reset success!";
+"设置失败！" = "Set failure!";
+"DVR将会重启Wi-Fi" = "For successful connection change settings in your mobile device";
+"下载" = "Download";
+"请允许访问iPhone的\"照片\"，否则无法使用下载功能！" = "Photos is used to save and share photos and videos.";
+
+//new
+"设备拍照成功！" = "Device camera success!";
+"设备拍照失败！" = "Device camera failure!";
+"帮助" = "Help";
+"帮助标题" = "Troubleshooting";
+"关于" = "About";
+"Road Cam" = "Road Cam";
+"未连接摄像机提示信息" = "Please connect your device to the camera via Wi-Fi.\nPlease refer to the user manual for more information. ";
+"保存失败！" = "Save fail!";
+"问题1" = "1.The camera has stopped recording:";
+"答案1" = "(1)Reset the camera.\n(2)The SD card may be faulty and needs to be formatted.";
+"问题2" = "2.The camera does not turn on:";
+"答案2" = "(1)Check that the power supply is OK.\n(2)Check that the SD card is inserted correctly.\n(3)Reset the camera";
+"问题3" = "3.Recorded footage does not play, or there is missing footage:";
+"答案3" = "(1)There is an SD card fault, and the card will need to be re-formatted.\n(2)Replace the SD card.";
+"问题4" = "4.Video recording not clear or blurry:";
+"答案4" = "Ensure that the camera lens is clean.";
+"问题5" = "5.Video playback on the computer stops and does not continue:";
+"答案5" = "(1)Uninstall/Re-install the software\n(2)Ensure that the SD cards is of sufficient quality to be used with the camera.";
+"问题6" = "6.Intermittent Recording:";
+"答案6" = "(1)Check whether the motion detection is on…Switch of then try again.\n(2) Check the SD card as it may be faulty and requires a format.";
+"问题7" = "7.Wi-Fi not connecting:";
+"答案7" = "(1) Check the settings of the device you are trying to connect to.\n(2)Make sure the camera Wi-Fi is on.\n(3)Reset the device.";
+
+"加载视频失败！" = "Load video failed!";
+"该视频不可播放！" = "The video is not playable!";
+"音量" = "Volume";
+
+//雄风
+"翻转" = "Flip to 180";
+"视频模式" = "Video Mode";
+"型号" = "Logo";
+"前置" = "Front";
+"后置" = "Rear";
+
+"缩时录影" = "Timelapse";
+"地图无法显示" = "No Map";

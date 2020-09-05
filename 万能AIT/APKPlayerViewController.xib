@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="APKPlayerViewController">
+            <connections>
+                <outlet property="durationLabel" destination="dZg-Y2-FfQ" id="uG8-Fl-W77"/>
+                <outlet property="flower" destination="kPE-Go-dOi" id="NeI-Ko-h4H"/>
+                <outlet property="mapView" destination="fZd-zI-oz3" id="hVj-Dc-k3B"/>
+                <outlet property="nextButton" destination="sy8-go-RXU" id="kb7-Ht-dhl"/>
+                <outlet property="pauseButton" destination="EdV-pK-gBB" id="bbd-Hm-Awr"/>
+                <outlet property="playButton" destination="CnY-zB-02C" id="acT-Oe-GP0"/>
+                <outlet property="playerView" destination="yP0-8A-u5n" id="6y9-vq-pKi"/>
+                <outlet property="previousButton" destination="LB5-T0-Sec" id="6WT-nt-pIA"/>
+                <outlet property="progressLabel" destination="V3K-gX-ktm" id="qbj-Hj-u8G"/>
+                <outlet property="progressSlider" destination="DwO-r3-IAc" id="ReV-y5-7Xq"/>
+                <outlet property="titleLabel" destination="ZeJ-wI-hF5" id="Agh-iz-uBf"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LB5-T0-Sec" userLabel="lastButton">
+                    <rect key="frame" x="71" y="804" width="50" height="50"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                    <color key="tintColor" red="0.71764705880000002" green="0.090196078430000007" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" image="videoPlayer_lastOne"/>
+                    <state key="highlighted" image="videoPlayer_lastOne_highLight"/>
+                    <connections>
+                        <action selector="chengePlayItemWithSender:" destination="-1" eventType="touchUpInside" id="Bpe-xr-RaP"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sy8-go-RXU" userLabel="nextButton">
+                    <rect key="frame" x="277" y="803" width="50" height="50"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                    <color key="tintColor" red="0.71764705880000002" green="0.090196078430000007" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" image="videoPlayer_nextOne"/>
+                    <state key="highlighted" image="videoPlayer_nextOne_highLight"/>
+                    <connections>
+                        <action selector="chengePlayItemWithSender:" destination="-1" eventType="touchUpInside" id="Iwq-kx-P5m"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EdV-pK-gBB" userLabel="pauseButton">
+                    <rect key="frame" x="175" y="798" width="62" height="62"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                    <color key="tintColor" red="0.71764705880000002" green="0.090196078430000007" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" image="videoPlayer_pause"/>
+                    <connections>
+                        <action selector="pause:" destination="-1" eventType="touchUpInside" id="0Va-9O-iVO"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CnY-zB-02C" userLabel="playButton">
+                    <rect key="frame" x="122" y="796" width="169" height="64"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                    <color key="tintColor" red="0.71764705880000002" green="0.090196078430000007" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" image="videoPlayer_play"/>
+                    <connections>
+                        <action selector="play:" destination="-1" eventType="touchUpInside" id="f82-bu-yUb"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V3K-gX-ktm" userLabel="currentProgress">
+                    <rect key="frame" x="36" y="767" width="27" height="11"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="DwO-r3-IAc">
+                    <rect key="frame" x="69" y="758" width="273" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                    <color key="tintColor" red="0.71764705880000002" green="0.090196078430000007" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <connections>
+                        <action selector="progressSliderTouchFinished:" destination="-1" eventType="touchUpInside" id="Few-hU-2VH"/>
+                        <action selector="progressSliderValueChanged:" destination="-1" eventType="valueChanged" id="RIu-p3-Pdk"/>
+                    </connections>
+                </slider>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZg-Y2-FfQ" userLabel="duration">
+                    <rect key="frame" x="356" y="767" width="31" height="11"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZeJ-wI-hF5">
+                    <rect key="frame" x="82" y="54" width="251" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PC7-Xo-sfS" userLabel="backButton">
+                    <rect key="frame" x="10" y="49" width="50" height="50"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="videoPlayer_local_back">
+                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <state key="highlighted" image="videoPlayer_local_back_highLight"/>
+                    <connections>
+                        <action selector="back:" destination="-1" eventType="touchUpInside" id="YWI-fD-CXh"/>
+                    </connections>
+                </button>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="fZd-zI-oz3">
+                    <rect key="frame" x="-3" y="434" width="417" height="279"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                </mapView>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yP0-8A-u5n">
+                    <rect key="frame" x="-3" y="127" width="421" height="279"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="kPE-Go-dOi">
+                            <rect key="frame" x="200" y="129" width="20" height="20"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <point key="canvasLocation" x="131.8840579710145" y="130.58035714285714"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="videoPlayer_lastOne" width="50" height="50"/>
+        <image name="videoPlayer_lastOne_highLight" width="50" height="50"/>
+        <image name="videoPlayer_local_back" width="50" height="50"/>
+        <image name="videoPlayer_local_back_highLight" width="50" height="50"/>
+        <image name="videoPlayer_nextOne" width="50" height="50"/>
+        <image name="videoPlayer_nextOne_highLight" width="50" height="50"/>
+        <image name="videoPlayer_pause" width="64" height="64"/>
+        <image name="videoPlayer_play" width="64" height="64"/>
+    </resources>
+</document>

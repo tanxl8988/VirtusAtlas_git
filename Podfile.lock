@@ -1,0 +1,63 @@
+PODS:
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
+    - AFNetworking/NSURLSession
+  - CocoaAsyncSocket (7.6.4)
+  - DACircularProgress (2.3.1)
+  - MBProgressHUD (0.9.2)
+  - MWPhotoBrowser (2.1.2):
+    - DACircularProgress (~> 2.3)
+    - MBProgressHUD (~> 0.9)
+    - "SDWebImage (!= 3.7.2, ~> 3.7)"
+  - PSTCollectionView (1.2.3)
+  - SDWebImage (3.8.3):
+    - SDWebImage/Core (= 3.8.3)
+  - SDWebImage/Core (3.8.3)
+  - UMengAnalytics-NO-IDFA (4.2.5)
+
+DEPENDENCIES:
+  - AFNetworking (~> 3.0)
+  - CocoaAsyncSocket
+  - DACircularProgress
+  - MBProgressHUD
+  - MWPhotoBrowser
+  - PSTCollectionView
+  - SDWebImage
+  - UMengAnalytics-NO-IDFA
+
+SPEC REPOS:
+  trunk:
+    - AFNetworking
+    - CocoaAsyncSocket
+    - DACircularProgress
+    - MBProgressHUD
+    - MWPhotoBrowser
+    - PSTCollectionView
+    - SDWebImage
+    - UMengAnalytics-NO-IDFA
+
+SPEC CHECKSUMS:
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  CocoaAsyncSocket: 694058e7c0ed05a9e217d1b3c7ded962f4180845
+  DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
+  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
+  MWPhotoBrowser: 5836d7aa041dc05a13de380c246826578adc5ea5
+  PSTCollectionView: 6749df92885353521f55279a7ce2b293762e2be4
+  SDWebImage: a72e880a8fe0f7fc31efe15aaed443c074d2a80c
+  UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
+
+PODFILE CHECKSUM: 3f8d2b3164a3ae9ad712741b7898d13a7e801881
+
+COCOAPODS: 1.9.1
