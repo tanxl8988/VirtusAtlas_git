@@ -28,8 +28,19 @@
             NSArray *validDataArray = [str componentsSeparatedByString:@","];
             
             NSMutableArray *onePointArray = [NSMutableArray array];
-            [onePointArray addObject:validDataArray[2]];
-            [onePointArray addObject:validDataArray[4]];
+            
+            //纬度
+            if ([validDataArray[3] isEqualToString:@"S"]) {
+                   NSString *longtitudeStr = [NSString stringWithFormat:@"-%@",validDataArray[2]];
+                [onePointArray addObject:longtitudeStr];
+            }else
+                [onePointArray addObject:validDataArray[2]];
+            //经度
+            if ([validDataArray[5] isEqualToString:@"W"]) {
+                   NSString *longtitudeStr = [NSString stringWithFormat:@"-%@",validDataArray[4]];
+                [onePointArray addObject:longtitudeStr];
+            }else
+                [onePointArray addObject:validDataArray[4]];
             
             [allGpsArray addObject:onePointArray];
         }

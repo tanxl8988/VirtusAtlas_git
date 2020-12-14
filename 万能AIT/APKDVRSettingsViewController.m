@@ -14,6 +14,8 @@
 #import "APKDVRSettingInfo.h"
 #import "APKDVRCommandFactory.h"
 #import "APKAboatViewController.h"
+#import "MStarUpgradeHandler.h"
+#import "AFNetworking.h"
 
 @interface APKDVRSettingsViewController ()
 
@@ -81,6 +83,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *watermarkLabel2;
 @property (weak, nonatomic) IBOutlet UILabel *dateFormatLabel2;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *dateFormatSegment2;
+@property (weak, nonatomic) IBOutlet UILabel *DBLabel;
 
 @property (weak, nonatomic) IBOutlet UISwitch *upsidedownSwitch;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *videoModeSegment;
@@ -95,6 +98,7 @@
 @property (strong,nonatomic) NSArray *rowHeights;
 @property (assign,nonatomic) APKDVRModal dvrModal;
 @property (nonatomic,assign) BOOL clickFormatSDCard;
+@property (nonatomic,retain) MBProgressHUD *HUD;
 
 @end
 
@@ -122,13 +126,14 @@
     self.dateFormatLabel.text = NSLocalizedString(@"日期格式", nil);
     self.motionDetectionLabel.text = NSLocalizedString(@"移动侦测", nil);
     self.cutTimeVideoL.text = NSLocalizedString(@"缩时录影", nil);
-    
+    self.DBLabel.text = NSLocalizedString(@"OTA升级", nil);
+
     //雄风
     self.upsidedownLabel.text = NSLocalizedString(@"翻转", nil);
     self.videoModeLabel.text = NSLocalizedString(@"视频模式", nil);
     self.watermarkLabel2.text = NSLocalizedString(@"戳记", nil);
     self.dateFormatLabel2.text = NSLocalizedString(@"日期格式", nil);
-    self.EdogTitleL.text = NSLocalizedString(@"电子狗", nil);
+    self.EdogTitleL.text = NSLocalizedString(@"停车监控", nil);//电子狗改停车监控
     self.speedLimitL.text = NSLocalizedString(@"超速提醒", nil);
     self.volumeL.text = NSLocalizedString(@"音量", nil);
 
@@ -357,10 +362,17 @@
             
             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.tabBarController.view animated:YES];
             __weak typeof(self) weakSelf = self;
-            NSDate *today = [NSDate date];
+//            NSDate *today = [NSDate date];
+            NSDate *date = [NSDate date]; // 获得时间对象
+
+            NSTimeZone *zone = [NSTimeZone systemTimeZone]; // 获得系统的时区
+
+            NSTimeInterval time = [zone secondsFromGMTForDate:date];// 以秒为单位返回当前时间与系统格林尼治时间的差
+
+            NSDate *dateNow = [date dateByAddingTimeInterval:time];// 然后把差的时间加上,就是当前系统准确的时间
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             [dateFormatter setDateFormat:@"yyyy$MM$dd$HH$mm$ss"];
-            NSString *currentTime = [dateFormatter stringFromDate:today];
+            NSString *currentTime = [dateFormatter stringFromDate:dateNow];
             [[APKDVRCommandFactory setCommandWithProperty:@"TimeSettings" value:currentTime] execute:^(id responseObject) {
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -428,11 +440,116 @@
         }];
     }else if (cell == self.DBValueCell){
         
-        [self performSegueWithIdentifier:@"DBValueVC" sender:nil];
+//        [self performSegueWithIdentifier:@"DBValueVC" sender:nil];
         
-
+        MStarUpgradeHandler *handler = [[MStarUpgradeHandler alloc] init];
+                
+        MBProgressHUD *HUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+        HUD.labelText = NSLocalizedString(@"升级文件准备中，请稍后...", nil);
+        self.HUD = HUD;
+        //        [self.view addSubview:self.HUD];
+        
+        [self excuteOTAUpgrate];
     }
 }
+
+-(void)excuteOTAUpgrate
+{
+    //1.确定请求路径
+    NSString *versonStr = [APKDVR sharedInstance].settingInfo.FWVersion;
+    NSNumber *value = [[NSUserDefaults standardUserDefaults] objectForKey:@"APKDEVELOPERMODEL"];
+    NSString *str = (value == @YES) ? @"Tester" : @"Customer";
+    NSString *model = @"Daltec";
+    __weak typeof (self) weakSelf = self;
+    NSString *urlStr = [NSString stringWithFormat:@"http://223.255.241.117:8000/download/?pr=18820&cus=%@&version=%@&visitor=%@",model,versonStr,str];
+    NSString *str1 = [urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL *url = [NSURL URLWithString:str1];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        if (error == nil) {
+            NSString *response = [[NSString alloc] initWithData:data  encoding:NSUTF8StringEncoding];
+            if (response.length > 66) {
+                
+                [APKAlertTool showAlertInViewController:self title:nil message:NSLocalizedString(@"已是最新版本", nil) confirmHandler:^(UIAlertAction *action) {
+                    [weakSelf.HUD hide:YES];
+                }];
+                return;
+            }
+            if ([response containsString:@"已是最新版本"]) {
+                [APKAlertTool showAlertInViewController:self title:nil message:NSLocalizedString(@"已是最新版本", nil) confirmHandler:^(UIAlertAction *action) {
+                    [weakSelf.HUD hide:YES];
+                }];
+                return;
+            }
+            if ([response containsString:@"无发布版本"]) {
+                [APKAlertTool showAlertInViewController:self title:nil message:NSLocalizedString(@"无发布版本", nil) confirmHandler:^(UIAlertAction *action) {
+                    [weakSelf.HUD hide:YES];
+                }];
+                return;
+            }
+            [weakSelf beginDownloadFile:response];
+        }else
+            [APKAlertTool showAlertInViewController:self title:nil message:NSLocalizedString(@"发生未知错误，无法升级", nil) confirmHandler:^(UIAlertAction *action) {
+                [weakSelf.HUD hide:YES];
+            }];
+    }];
+    [dataTask resume];
+}
+
+-(void)beginDownloadFile:(NSString*)filePath
+{
+    
+    __weak typeof (self) weakSelf = self;
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    
+    NSString *pathStr = [NSString stringWithFormat:@"http://223.255.241.117:8000/getfile/?path=%@",filePath];
+    NSString *str1 = [pathStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL *URL = [NSURL URLWithString:str1];
+    NSURLRequest *request2 = [NSURLRequest requestWithURL:URL];
+    
+    NSURLSessionDownloadTask *downloadTask = [manager downloadTaskWithRequest:request2 progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
+        NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
+        return [documentsDirectoryURL URLByAppendingPathComponent:[response suggestedFilename]];
+    } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
+        
+        if (error) {
+            [APKAlertTool showAlertInViewController:weakSelf title:nil message:NSLocalizedString(@"发生未知错误，无法升级", nil) confirmHandler:^(UIAlertAction *action) {
+                [weakSelf.HUD hide:YES];
+            }];
+        }else{
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                weakSelf.HUD.mode = MBProgressHUDModeDeterminateHorizontalBar;
+                weakSelf.HUD.labelText = NSLocalizedString(@"升级包上传中...", nil);
+            });
+            
+            __block MStarUpgradeHandler *handler = [[MStarUpgradeHandler alloc] init];
+            
+            [handler threadSafeUpgradeWithFilePath:[filePath path] cb:^(BOOL success, NSString *errorInfo) {
+                if (!errorInfo) {
+                    [weakSelf.HUD hide:YES];
+                }
+            } progress:^(float upgradeUploadProgress) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    weakSelf.HUD.progress = upgradeUploadProgress;
+                });
+            } completionHandle:^{
+                   
+                [APKAlertTool showAlertInViewController:weakSelf title:nil message:NSLocalizedString(@"机器固件已经上传成功，是否立即重启？", nil) cancelHandler:^(UIAlertAction *action) {
+                    nil;
+                } confirmHandler:^(UIAlertAction *action) {
+                    [handler triggerRestartDevice];
+                }];
+            }];
+        }
+    }];
+    //重新开始下载
+    [downloadTask resume];
+}
+
 
 -(void)formatSdCard
 {
@@ -575,7 +692,7 @@
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     
     NSString *value = [APKDVR sharedInstance].settingInfo.edogMap[sender.isOn];
-    NSString *property = @"Camera.Menu.Edog";
+    NSString *property = @"Camera.Menu.PowerOnGsensorSensitivity";
     __weak typeof(self)weakSelf = self;
     [[APKDVRCommandFactory setCommandWithProperty:property value:value] execute:^(id responseObject) {
         
@@ -953,7 +1070,7 @@
 - (NSArray *)rowHeights{
     
     if (!_rowHeights) {
-        _rowHeights = @[@(62),@(98),@(98),@(98),@(98),@(98),@(98),@(62),@(62),@(62),@(62),@(62),@(62),@(62)];
+        _rowHeights = @[@(62),@(62),@(98),@(98),@(98),@(98),@(98),@(98),@(62),@(62),@(62),@(62),@(62),@(62),@(62)];
     }
     return _rowHeights;
 }
@@ -963,7 +1080,7 @@
     if (!_cells) {
         
 //        _cells = @[self.recordSoundCell,self.motionDetectionCell,self.clipDurationCell,self.gSensorCell,self.LCDLightCell,self.watermarkCell1,self.dateFormatCell,self.exposureCell,self.correctCameraClockCell,self.formatCell,self.networkConfigureCell,self.factoryResetCell,self.helpCell,self.aboatCell,self.DBValueCell];
-        _cells = @[self.recordSoundCell,self.clipDurationCell,self.gSensorCell,self.volumeCell,self.watermarkCell1,self.dateFormatCell,self.exposureCell,self.correctCameraClockCell,self.formatCell,self.networkConfigureCell,self.factoryResetCell,self.helpCell,self.aboatCell];
+        _cells = @[self.recordSoundCell,self.EdogCell,self.clipDurationCell,self.gSensorCell,self.volumeCell,self.watermarkCell1,self.dateFormatCell,self.exposureCell,self.correctCameraClockCell,self.formatCell,self.networkConfigureCell,self.factoryResetCell,self.DBValueCell,self.helpCell,self.aboatCell];
     }
     return _cells;
 }

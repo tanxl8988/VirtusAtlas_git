@@ -59,7 +59,7 @@
         info.GSensor = [info.GSensorMap indexOfObject:infoDict[@"GSensor"]];
         info.exposure = [info.exposureMap indexOfObject:infoDict[@"EV"]];
         info.FWVersion = infoDict[@"FWversion"];
-        info.edog = [info.edogMap indexOfObject:infoDict[@"Edog"]];
+        info.edog = [info.edogMap indexOfObject:infoDict[@"PowerOnGsensorSensitivity"]];//电子狗改停车监控
         info.speedLimit = [info.speedLimitMap indexOfObject:infoDict[@"SpeedLimitAlert"]];
         info.volume = [info.volumeMap indexOfObject:infoDict[@"Volume"]];
         info.timelapse = [info.timelapseMap indexOfObject:infoDict[@"Timelapse"]];

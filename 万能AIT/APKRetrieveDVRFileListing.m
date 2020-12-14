@@ -17,6 +17,7 @@
 @property (nonatomic) NSInteger fileType;
 @property (strong,nonatomic) NSMutableArray *fileArray;
 @property (nonatomic) NSInteger numberOfRetrievedFiles;
+@property (nonatomic) NSInteger offsetCount;
 
 @end
 
@@ -44,7 +45,7 @@
 - (void)retrieveFileListingWithFileType:(NSInteger)fileType success:(void(^)(void))success failure:(void(^)(int rval))failure{
     
     __weak typeof(self)weakSelf = self;
-    [[APKDVRCommandFactory getFileListCommandWithFileType:fileType count:10 offset:self.numberOfRetrievedFiles isFrontCamera:self.isFrontCamera] execute:^(id responseObject) {
+    [[APKDVRCommandFactory getFileListCommandWithFileType:fileType count:16 offset:self.offsetCount isFrontCamera:self.isFrontCamera] execute:^(id responseObject) {
         
         NSArray *fileArray = responseObject;
         APKDVRFile *file = fileArray.firstObject;
@@ -63,9 +64,10 @@
                 }
                 
 //                [weakSelf.fileArray addObjectsFromArray:fileArray];
-                weakSelf.numberOfRetrievedFiles += fileArray.count;
-                [weakSelf retrieveFileListingWithFileType:fileType success:success failure:failure];
-                
+//                weakSelf.numberOfRetrievedFiles += fileArray.count;
+//                [weakSelf retrieveFileListingWithFileType:fileType success:success failure:failure];
+                weakSelf.numberOfRetrievedFiles = self.fileArray.count;
+                success();
             }else{
             
                 failure(-1);
@@ -193,9 +195,11 @@
 
 - (void)retrieveFileListingWithOffset:(NSInteger)offset count:(NSInteger)count success:(APKRetrieveDVRFileListingSuccessHandler)success failure:(APKRetrieveDVRFileListingFailureHandler)failure{
     
-    if (offset == 0) {//第一次加载数据
+//    if (offset == 0) {//第一次加载数据
         
         //offset == 0表示需要刷新列表，要重新获取数据
+    
+        self.offsetCount = offset;
         [self.fileArray removeAllObjects];
         __weak typeof(self)weakSelf = self;
         void (^retrieveSuccess)(void) = ^{
@@ -247,7 +251,7 @@
             [self retrieveFileListingWithFileType:self.fileType success:retrieveSuccess failure:retrieveFailure];
         }
         
-    }else{
+    /*}else{
         
         NSArray *fileArray = [self fileArrayWithCount:count];
         if (fileArray.count == 0) {
@@ -258,7 +262,7 @@
             
             [self loadThumbnailForFileArray:fileArray success:success failure:failure];
         }
-    }
+    }*/
 }
 
 #pragma mark - getter 

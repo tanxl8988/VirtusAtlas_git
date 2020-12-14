@@ -38,17 +38,21 @@
 
 + (UIAlertController *)showAlertInViewController:(UIViewController *)viewController title:(NSString *)title message:(NSString *)message confirmHandler:(void (^)(UIAlertAction *action))confirmHandler{
     
-    UIAlertAction *confirm = [UIAlertAction actionWithTitle:NSLocalizedString(@"确定", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
-        if (confirmHandler) {
-            
-            confirmHandler(action);
-        }
-    }];
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
-    [alert addAction:confirm];
-    [viewController presentViewController:alert animated:YES completion:^{
-    }];
+    __block UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+
+     dispatch_async(dispatch_get_main_queue(), ^{
+         UIAlertAction *confirm = [UIAlertAction actionWithTitle:NSLocalizedString(@"确定", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+              
+              if (confirmHandler) {
+                  
+                  confirmHandler(action);
+              }
+          }];
+          alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+          [alert addAction:confirm];
+          [viewController presentViewController:alert animated:YES completion:^{
+          }];
+     });
     
     return alert;
 }

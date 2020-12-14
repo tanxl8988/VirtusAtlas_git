@@ -55,6 +55,7 @@
 @property (nonatomic,retain) MKPointAnnotation *annotation;
 @property (strong,nonatomic) dispatch_source_t heartBeatTimer;
 @property (nonatomic,assign) int annotationNum;
+@property (nonatomic,assign) BOOL HaveGPSData;
 
 @end
 
@@ -76,6 +77,13 @@
     
     self.mediaPlayer.delegate = self;
     [self.mediaPlayer addObserver:self forKeyPath:@"state" options:NSKeyValueObservingOptionNew context:nil];
+    
+    if ([self.URLs.firstObject class] == [NSURL class]) {
+          [self.mapView removeFromSuperview];
+          self.playerView.center = self.view.center;
+      }
+    
+    _HaveGPSData = NO;
     
     if (self.URLs.count > self.currentIndex){
         [self getFileName];
@@ -255,17 +263,18 @@
         [self.mapView removeOverlay:self.baseLine];
     }
     
+//         NSArray *locationArray = @[@[@"37.93563",@"116.377358"],@[@"37.935564",@"116.376414"],@[@"37.935646",@"116.376037"],@[@"37.93586",@"116.375791"],@[@"37.93586",@"116.375791"],@[@"37.937983",@"116.37474"],@[@"37.937616",@"116.3746"],@[@"37.937888",@"116.376971"],@[@"37.937855",@"116.377047"],@[@"37.937172",@"116.377132"],@[@"37.937604",@"116.377218"],@[@"37.937489",@"116.377132"],@[@"37.93614",@"116.377283"],@[@"37.935622",@"116.377347"]];
+    
+//        self.locationArray = locationArray;
+    
     NSArray *firstLocationArr = self.locationArray.firstObject;
     NSArray *lastLocationArr = self.locationArray.lastObject;
-    if ([firstLocationArr.firstObject isEqualToString:@""] && [lastLocationArr.firstObject isEqualToString:@""]) {
+    if ((!firstLocationArr || [firstLocationArr.firstObject isEqualToString:@""]) && (!lastLocationArr || [lastLocationArr.firstObject isEqualToString:@""])) {
         [APKAlertTool showAlertInViewController:self title:nil message:NSLocalizedString(@"地图无法显示", nil) confirmHandler:nil];
         return;
     }
-    
-    
-//     NSArray *locationArray = @[@[@"37.93563",@"116.377358"],@[@"37.935564",@"116.376414"],@[@"37.935646",@"116.376037"],@[@"37.93586",@"116.375791"],@[@"37.93586",@"116.375791"],@[@"37.937983",@"116.37474"],@[@"37.937616",@"116.3746"],@[@"37.937888",@"116.376971"],@[@"37.937855",@"116.377047"],@[@"37.937172",@"116.377132"],@[@"37.937604",@"116.377218"],@[@"37.937489",@"116.377132"],@[@"37.93614",@"116.377283"],@[@"37.935622",@"116.377347"]];
-//
-//    self.locationArray = locationArray;
+
+    self.HaveGPSData = YES;
     
     NSInteger count = self.locationArray.count;
     
@@ -528,7 +537,7 @@
         dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0/*延迟执行时间*/ * NSEC_PER_SEC));
 
         dispatch_after(delayTime, dispatch_get_main_queue(), ^{
-            if (self.videoIsLocal == YES) {
+            if (self.videoIsLocal == YES && _HaveGPSData == YES) {
                 dispatch_resume(self.heartBeatTimer);
             }
         });
@@ -550,7 +559,9 @@
     int currentSeconds = self.mediaPlayer.time.intValue / 1000;
     self.lastPLayTime = currentSeconds;
     [self.mediaPlayer pause];
-    dispatch_suspend(self.heartBeatTimer);
+    if (_HaveGPSData == YES) {
+        dispatch_suspend(self.heartBeatTimer);
+    }
 
 }
 
@@ -593,9 +604,11 @@
      [self.mediaPlayer setTime:time];
      [self.mediaPlayer play];
     
-    dispatch_suspend(self.heartBeatTimer);
+    if (_HaveGPSData == YES) {
+        dispatch_suspend(self.heartBeatTimer);
+    }
     self.annotationNum = (sender.value/_durationTime)*self.locationArray.count;
-    if (_playFinished != YES && self.videoIsLocal == YES) {
+    if (_playFinished != YES && self.videoIsLocal == YES && _HaveGPSData == YES) {
         dispatch_resume(self.heartBeatTimer);
     }
 }

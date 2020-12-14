@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="H4d-7E-SMs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="H4d-7E-SMs">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -898,7 +898,7 @@
                                         <rect key="frame" x="0.0" y="1780" width="375" height="62"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ko8-Eo-h2h" id="404-Dl-8BJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="356" height="62"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="348" height="62"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="89C-n7-qaD">
@@ -925,6 +925,7 @@
                     <navigationItem key="navigationItem" id="Ols-hW-uIi"/>
                     <connections>
                         <outlet property="CutTImeVideoCell" destination="xbH-79-dh1" id="cnv-FG-5ME"/>
+                        <outlet property="DBLabel" destination="CTJ-AO-1P9" id="JvL-hb-oei"/>
                         <outlet property="DBValueCell" destination="p6I-OJ-Ojt" id="eTs-mO-QzK"/>
                         <outlet property="EVLabel" destination="xuR-7m-PD3" id="EcI-GM-6ra"/>
                         <outlet property="EVSlider" destination="GeP-bn-4Ph" id="BiA-nK-Ey7"/>
@@ -1931,6 +1932,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="firmwareVersionLabel" destination="UBw-E0-V8e" id="55E-mo-FM6"/>
+                        <outlet property="imageView" destination="y0g-8f-QCP" id="2JP-x7-sca"/>
                         <outlet property="versionLabel" destination="m0F-4L-lJR" id="F8y-5k-zjm"/>
                     </connections>
                 </viewController>

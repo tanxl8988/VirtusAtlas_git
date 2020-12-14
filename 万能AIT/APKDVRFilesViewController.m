@@ -26,7 +26,7 @@
 #import "APKPlayerViewController.h"
 
 static NSString *cellIdentifier = @"dvrFileCell";
-#define PageSize 1000
+#define PageSize 16
 
 typedef enum : NSUInteger {
     kAPKRequestDVRFileStateNone,
@@ -53,6 +53,7 @@ typedef enum : NSUInteger {
 @property (strong,nonatomic) APKBatchDownload *batchDownload;
 @property (strong,nonatomic) APKBatchDelete *batchDelete;
 @property (strong,nonatomic) APKDVRFileDownloadTask *downloadTask;
+@property (nonatomic,retain) NSMutableArray *receiveFilesArr;
 
 @end
 
@@ -108,11 +109,15 @@ typedef enum : NSUInteger {
         hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     }
     __weak typeof(self)weakSelf = self;
+    self.retrieveFileListing.isFrontCamera = YES;
     [self.retrieveFileListing retrieveFileListingWithOffset:offset count:PageSize success:^(NSArray<APKDVRFile *> *fileArray) {
         
-        NSMutableArray *requestArr = [NSMutableArray array];
-        NSArray *frontArr = fileArray;
-        [requestArr addObjectsFromArray:frontArr];
+//        NSMutableArray *requestArr = [NSMutableArray array];
+//        NSArray *frontArr = fileArray;
+        [weakSelf.receiveFilesArr removeAllObjects];
+        
+        [weakSelf.receiveFilesArr addObjectsFromArray:fileArray];
+        weakSelf.isNoMoreFiles = fileArray.count == 0 ? YES : NO;
         weakSelf.retrieveFileListing.isFrontCamera = NO;
         [weakSelf.retrieveFileListing retrieveFileListingWithOffset:offset count:PageSize success:^(NSArray<APKDVRFile *> *fileArray) {
             
@@ -127,8 +132,8 @@ typedef enum : NSUInteger {
 //                }
             
 //                [weakSelf.dataSource addObjectsFromArray:fileArray];
-                [requestArr addObjectsFromArray:fileArray];
-                NSArray *sortArr = [weakSelf sortDVRFileWithFileDateAndFOrR:requestArr];
+                [weakSelf.receiveFilesArr addObjectsFromArray:fileArray];
+                NSArray *sortArr = [weakSelf sortDVRFileWithFileDateAndFOrR:weakSelf.receiveFilesArr];
                 [weakSelf.dataSource addObjectsFromArray:sortArr];
                 [weakSelf.tableView reloadData];
                 
@@ -136,7 +141,6 @@ typedef enum : NSUInteger {
                 if (weakSelf.refreshControl.isRefreshing) [weakSelf.refreshControl endRefreshing];
                 if (hud) [hud hide:YES];
                 weakSelf.requestState = kAPKRequestDVRFileStateNone;
-                weakSelf.isNoMoreFiles = fileArray.count == 0 ? YES : NO;
             });
             
         } failure:^{
@@ -739,7 +743,7 @@ typedef enum : NSUInteger {
     if (!_retrieveFileListing) {
     
         _retrieveFileListing = [[APKRetrieveDVRFileListing alloc] initWithRetrieveFileType:self.fileType];
-        _retrieveFileListing.isFrontCamera = YES;
+//        _retrieveFileListing.isFrontCamera = YES;
     }
 
     return _retrieveFileListing;
@@ -754,6 +758,14 @@ typedef enum : NSUInteger {
     return _dataSource;
 }
 
+-(NSMutableArray *)receiveFilesArr
+{
+    if (!_receiveFilesArr) {
+        _receiveFilesArr = [NSMutableArray array];
+    }
+    return _receiveFilesArr;
+}
+
 #pragma mark - setter
 
 - (void)setIsNoMoreFiles:(BOOL)isNoMoreFiles{
@@ -762,5 +774,7 @@ typedef enum : NSUInteger {
     
     [self updateTipsLabel];
 }
+
+
 
 @end

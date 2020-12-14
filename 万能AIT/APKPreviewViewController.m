@@ -136,10 +136,17 @@
 
 -(void)correctTime
 {
-    NSDate *today = [NSDate date];
+//    NSDate *today = [NSDate date];
+    NSDate *date = [NSDate date]; // 获得时间对象
+
+    NSTimeZone *zone = [NSTimeZone systemTimeZone]; // 获得系统的时区
+
+    NSTimeInterval time = [zone secondsFromGMTForDate:date];// 以秒为单位返回当前时间与系统格林尼治时间的差
+
+    NSDate *dateNow = [date dateByAddingTimeInterval:time];// 然后把差的时间加上,就是当前系统准确的时间
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy$MM$dd$HH$mm$ss"];
-    NSString *currentTime = [dateFormatter stringFromDate:today];
+    NSString *currentTime = [dateFormatter stringFromDate:dateNow];
     [[APKDVRCommandFactory setCommandWithProperty:@"TimeSettings" value:currentTime] execute:^(id responseObject) {
         NSLog(@"");
     } failure:^(int rval) {

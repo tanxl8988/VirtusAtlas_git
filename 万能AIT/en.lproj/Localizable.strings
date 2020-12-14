@@ -105,3 +105,16 @@
 
 "缩时录影" = "Timelapse";
 "地图无法显示" = "No Map";
+
+"OTA升级" = "Firmware Update";
+
+"已是最新版本" = "Already the latest version";
+"无发布版本" = "No release";
+"发生未知错误，无法升级" = "Unknown error occurred, unable to upgrade";
+"升级包上传中..." = "Uploading upgrade package";
+"升级文件准备中，请稍后..." = "The upgrade file is being prepared, please wait...";
+
+"没有ACC，无法设置此功能" = "Without ACC, this function cannot be set";
+"机器固件已经上传成功，是否立即重启？" = "The firmware of the machine has been uploaded successfully. Is it restarted immediately?";
+
+"停车监控" = "Parking Mode";

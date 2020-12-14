@@ -28,6 +28,7 @@
 		042A7B611EA5BC720046FB4A /* APKMWPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 042A7B601EA5BC720046FB4A /* APKMWPhoto.m */; };
 		042A7B641EA5C3FF0046FB4A /* APKLocalPhotoCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 042A7B631EA5C3FF0046FB4A /* APKLocalPhotoCaptionView.m */; };
 		042A7B671EA5F7220046FB4A /* APKNetworkConfigureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042A7B661EA5F7220046FB4A /* APKNetworkConfigureViewController.m */; };
+		042FA6322503274700E192DB /* MobileVLCKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042FA6312503274700E192DB /* MobileVLCKit.framework */; };
 		0455CDBC1E836277004D3D1D /* APKDVRSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0455CDBB1E836277004D3D1D /* APKDVRSettingsViewController.m */; };
 		0455CDBF1E8366A1004D3D1D /* APKDVRFilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0455CDBE1E8366A1004D3D1D /* APKDVRFilesViewController.m */; };
 		0455CDC61E836B0C004D3D1D /* APKDVRFileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0455CDC51E836B0C004D3D1D /* APKDVRFileCell.m */; };
@@ -76,6 +77,7 @@
 		04AF83241E9CC1860045E346 /* APKPhotosTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AF83211E9CC1860045E346 /* APKPhotosTool.m */; };
 		04B2765E1F3051F300BBF586 /* APKWifiInfoResponseObjectHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B2765D1F3051F300BBF586 /* APKWifiInfoResponseObjectHandler.m */; };
 		04C7132F1FE9046600347CC8 /* APKRealTimeViewingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C7132E1FE9046600347CC8 /* APKRealTimeViewingController.m */; };
+		04F841D82578DE0E00C000C6 /* MStarUpgradeHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F841D72578DE0E00C000C6 /* MStarUpgradeHandler.m */; };
 		CE98E27A505D187CF53A9619 /* libPods-万能AIT.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C900432884EB5950675A7FDD /* libPods-万能AIT.a */; };
 		D638CD5B224B16BC00E3998F /* DBValueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D638CD5A224B16BC00E3998F /* DBValueViewController.m */; };
 		D66DAB042296701200FC9E0F /* APKDVRListen.m in Sources */ = {isa = PBXBuildFile; fileRef = D66DAB032296701200FC9E0F /* APKDVRListen.m */; };
@@ -125,6 +127,7 @@
 		042A7B631EA5C3FF0046FB4A /* APKLocalPhotoCaptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APKLocalPhotoCaptionView.m; sourceTree = "<group>"; };
 		042A7B651EA5F7220046FB4A /* APKNetworkConfigureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APKNetworkConfigureViewController.h; sourceTree = "<group>"; };
 		042A7B661EA5F7220046FB4A /* APKNetworkConfigureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APKNetworkConfigureViewController.m; sourceTree = "<group>"; };
+		042FA6312503274700E192DB /* MobileVLCKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileVLCKit.framework; path = "万能AIT/VLCKit/MobileVLCKit.framework"; sourceTree = "<group>"; };
 		0455CDBA1E836277004D3D1D /* APKDVRSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APKDVRSettingsViewController.h; sourceTree = "<group>"; };
 		0455CDBB1E836277004D3D1D /* APKDVRSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APKDVRSettingsViewController.m; sourceTree = "<group>"; };
 		0455CDBD1E8366A1004D3D1D /* APKDVRFilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APKDVRFilesViewController.h; sourceTree = "<group>"; };
@@ -229,6 +232,8 @@
 		04C1C28D1F7503C80006B9C8 /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = lt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		04C7132D1FE9046600347CC8 /* APKRealTimeViewingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APKRealTimeViewingController.h; sourceTree = "<group>"; };
 		04C7132E1FE9046600347CC8 /* APKRealTimeViewingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APKRealTimeViewingController.m; sourceTree = "<group>"; };
+		04F841D62578DE0E00C000C6 /* MStarUpgradeHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MStarUpgradeHandler.h; sourceTree = "<group>"; };
+		04F841D72578DE0E00C000C6 /* MStarUpgradeHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MStarUpgradeHandler.m; sourceTree = "<group>"; };
 		453080AE8D0B9D6AC5283C05 /* Pods-万能AIT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-万能AIT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-万能AIT/Pods-万能AIT.debug.xcconfig"; sourceTree = "<group>"; };
 		72AE831D49EA6D4616B9AFDE /* Pods-万能AIT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-万能AIT.release.xcconfig"; path = "Pods/Target Support Files/Pods-万能AIT/Pods-万能AIT.release.xcconfig"; sourceTree = "<group>"; };
 		C900432884EB5950675A7FDD /* libPods-万能AIT.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-万能AIT.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -246,6 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04A64EFE1E82164B00D3C78F /* libbz2.tbd in Frameworks */,
+				042FA6322503274700E192DB /* MobileVLCKit.framework in Frameworks */,
 				04A64EFC1E82163B00D3C78F /* libiconv.tbd in Frameworks */,
 				04A64EF81E82160700D3C78F /* libstdc++.6.0.9.tbd in Frameworks */,
 				04A64EF31E8205AA00D3C78F /* libxml2.tbd in Frameworks */,
@@ -459,6 +465,7 @@
 				04A64EFB1E82163B00D3C78F /* libiconv.tbd */,
 				04A64EF71E82160700D3C78F /* libstdc++.6.0.9.tbd */,
 				04A64EF21E8205AA00D3C78F /* libxml2.tbd */,
+				042FA6312503274700E192DB /* MobileVLCKit.framework */,
 				047033FA1E812AF500E6E500 /* AudioToolbox.framework */,
 				C900432884EB5950675A7FDD /* libPods-万能AIT.a */,
 			);
@@ -474,6 +481,8 @@
 				D66DAB032296701200FC9E0F /* APKDVRListen.m */,
 				D67F6EAC242471A10082A228 /* APKHandleGpsInfoTool.h */,
 				D67F6EAB242471A10082A228 /* APKHandleGpsInfoTool.m */,
+				04F841D62578DE0E00C000C6 /* MStarUpgradeHandler.h */,
+				04F841D72578DE0E00C000C6 /* MStarUpgradeHandler.m */,
 				04A64EEE1E82058800D3C78F /* route.h */,
 			);
 			name = tools;
@@ -691,6 +700,7 @@
 				042A7B5E1EA5AF160046FB4A /* APKVideoPlayer.m in Sources */,
 				04199A4F1F29B6B500B21A0F /* APKDVRCommandFactory.m in Sources */,
 				045BC4A71EBC59080045A77B /* APKHelpQuestionCell.m in Sources */,
+				04F841D82578DE0E00C000C6 /* MStarUpgradeHandler.m in Sources */,
 				045BC4AD1EBC59260045A77B /* APKAboatViewController.m in Sources */,
 				0497EC691FA9A8D4002A8B44 /* APKShareTool.m in Sources */,
 				047033C91E8127C700E6E500 /* AppDelegate.m in Sources */,
@@ -886,7 +896,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CURRENT_PROJECT_VERSION = 2.4;
+				CURRENT_PROJECT_VERSION = 2.7;
 				DEVELOPMENT_TEAM = 7JA3J4SM22;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -900,7 +910,7 @@
 				INFOPLIST_FILE = "万能AIT/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.4;
+				MARKETING_VERSION = 2.7;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -952,7 +962,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CURRENT_PROJECT_VERSION = 2.4;
+				CURRENT_PROJECT_VERSION = 2.7;
 				DEVELOPMENT_TEAM = 2BNSN9XYY9;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -966,7 +976,7 @@
 				INFOPLIST_FILE = "万能AIT/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.4;
+				MARKETING_VERSION = 2.7;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
