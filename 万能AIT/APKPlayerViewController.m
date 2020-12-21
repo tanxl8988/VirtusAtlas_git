@@ -108,6 +108,10 @@
 
     [self.mediaPlayer removeObserver:self forKeyPath:@"state"];
     
+//    if (self.heartBeatTimer) {
+//        dispatch_cancel(self.heartBeatTimer);
+//    }
+    
 }
 
 
@@ -322,7 +326,7 @@
     if (self.annotation) {
         [self.mapView removeAnnotation:self.annotation];
     }
-    if (_annotationNum > self.locationArray.count - 1) {
+    if (_annotationNum > self.locationArray.count - 1 || _playFinished) {
         return;
     }
     CLLocationCoordinate2D coordinate2D;
@@ -604,13 +608,13 @@
      [self.mediaPlayer setTime:time];
      [self.mediaPlayer play];
     
-    if (_HaveGPSData == YES) {
-        dispatch_suspend(self.heartBeatTimer);
-    }
+//    if (_HaveGPSData == YES) {
+//        dispatch_suspend(self.heartBeatTimer);
+//    }
     self.annotationNum = (sender.value/_durationTime)*self.locationArray.count;
-    if (_playFinished != YES && self.videoIsLocal == YES && _HaveGPSData == YES) {
-        dispatch_resume(self.heartBeatTimer);
-    }
+//    if (_playFinished != YES && self.videoIsLocal == YES && _HaveGPSData == YES) {
+//        dispatch_resume(self.heartBeatTimer);
+//    }
 }
 
 
